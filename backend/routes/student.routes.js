@@ -10,6 +10,17 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const config = require('../config'); // Import the config file
+
+const verifyToken = require('../middleware/auth');
+
+// Use verifyToken middleware for routes that require authentication
+router.get('/protected-route', verifyToken, (req, res) => {
+  res.json({
+    message: 'This is a protected route!',
+    userId: req.userId,
+  });
+});
+
 // Signup route
 router.route('/signup').post(async (req, res, next) => {
   const { username, password } = req.body;

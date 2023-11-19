@@ -1,3 +1,5 @@
+// backend/models/Student.js
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 let studentSchema = new Schema({
